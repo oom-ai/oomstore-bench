@@ -50,7 +50,7 @@ def main():
             'name': 'bench',
         },
         'groups': [{
-            'name': f"group_size_{count}",
+            'name': f"group_{count}",
             'features': list(itertools.islice(group_gen(), count)),
         }],
     }

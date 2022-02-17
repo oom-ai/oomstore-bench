@@ -3,7 +3,7 @@ kind: Entity
 name: bench
 description: ~
 groups:
-  - name: group_size_100
+  - name: group_100
     category: batch
     description: ~
     features:
