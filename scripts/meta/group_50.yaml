@@ -1,0 +1,160 @@
+---
+kind: Entity
+name: bench
+description: ~
+groups:
+  - name: group_size_50
+    category: batch
+    description: ~
+    features:
+      - name: feature_1
+        value-type: int64
+        description: ~
+      - name: feature_2
+        value-type: int64
+        description: ~
+      - name: feature_3
+        value-type: int64
+        description: ~
+      - name: feature_4
+        value-type: int64
+        description: ~
+      - name: feature_5
+        value-type: int64
+        description: ~
+      - name: feature_6
+        value-type: bool
+        description: ~
+      - name: feature_7
+        value-type: bool
+        description: ~
+      - name: feature_8
+        value-type: float64
+        description: ~
+      - name: feature_9
+        value-type: string
+        description: ~
+      - name: feature_10
+        value-type: int64
+        description: ~
+      - name: feature_11
+        value-type: int64
+        description: ~
+      - name: feature_12
+        value-type: int64
+        description: ~
+      - name: feature_13
+        value-type: int64
+        description: ~
+      - name: feature_14
+        value-type: int64
+        description: ~
+      - name: feature_15
+        value-type: int64
+        description: ~
+      - name: feature_16
+        value-type: bool
+        description: ~
+      - name: feature_17
+        value-type: bool
+        description: ~
+      - name: feature_18
+        value-type: float64
+        description: ~
+      - name: feature_19
+        value-type: string
+        description: ~
+      - name: feature_20
+        value-type: int64
+        description: ~
+      - name: feature_21
+        value-type: int64
+        description: ~
+      - name: feature_22
+        value-type: int64
+        description: ~
+      - name: feature_23
+        value-type: int64
+        description: ~
+      - name: feature_24
+        value-type: int64
+        description: ~
+      - name: feature_25
+        value-type: int64
+        description: ~
+      - name: feature_26
+        value-type: bool
+        description: ~
+      - name: feature_27
+        value-type: bool
+        description: ~
+      - name: feature_28
+        value-type: float64
+        description: ~
+      - name: feature_29
+        value-type: string
+        description: ~
+      - name: feature_30
+        value-type: int64
+        description: ~
+      - name: feature_31
+        value-type: int64
+        description: ~
+      - name: feature_32
+        value-type: int64
+        description: ~
+      - name: feature_33
+        value-type: int64
+        description: ~
+      - name: feature_34
+        value-type: int64
+        description: ~
+      - name: feature_35
+        value-type: int64
+        description: ~
+      - name: feature_36
+        value-type: bool
+        description: ~
+      - name: feature_37
+        value-type: bool
+        description: ~
+      - name: feature_38
+        value-type: float64
+        description: ~
+      - name: feature_39
+        value-type: string
+        description: ~
+      - name: feature_40
+        value-type: int64
+        description: ~
+      - name: feature_41
+        value-type: int64
+        description: ~
+      - name: feature_42
+        value-type: int64
+        description: ~
+      - name: feature_43
+        value-type: int64
+        description: ~
+      - name: feature_44
+        value-type: int64
+        description: ~
+      - name: feature_45
+        value-type: int64
+        description: ~
+      - name: feature_46
+        value-type: bool
+        description: ~
+      - name: feature_47
+        value-type: bool
+        description: ~
+      - name: feature_48
+        value-type: float64
+        description: ~
+      - name: feature_49
+        value-type: string
+        description: ~
+      - name: feature_50
+        value-type: int64
+        description: ~
+
