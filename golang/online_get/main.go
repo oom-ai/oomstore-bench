@@ -78,7 +78,6 @@ func bench(ctx context.Context, store *oomstore.OomStore, requests, concurrency 
 
 	var wgWorkers sync.WaitGroup
 	part := requests / concurrency
-	start := time.Now()
 	for i := 0; i < concurrency; i++ {
 		wgWorkers.Add(1)
 		go func() {
@@ -100,7 +99,6 @@ func bench(ctx context.Context, store *oomstore.OomStore, requests, concurrency 
 
 	wgWorkers.Wait()
 	close(ch)
-	totalTime := time.Now().Sub(start)
 	wgCounters.Wait()
 
 	avg, _ := stats.Mean(durations)
@@ -109,15 +107,14 @@ func bench(ctx context.Context, store *oomstore.OomStore, requests, concurrency 
 	med, _ := stats.Median(durations)
 	p95, _ := stats.Percentile(durations, 95)
 	p99, _ := stats.Percentile(durations, 99)
-	qps := float64(requests) / totalTime.Seconds()
 
+	fmt.Printf("QPS: %.2f  \n", float64(concurrency)*1000/avg)
 	fmt.Printf("Avg: %.2fms\n", avg)
 	fmt.Printf("Min: %.2fms\n", min)
 	fmt.Printf("Max: %.2fms\n", max)
 	fmt.Printf("Med: %.2fms\n", med)
 	fmt.Printf("P95: %.2fms\n", p95)
 	fmt.Printf("P99: %.2fms\n", p99)
-	fmt.Printf("QPS: %.2f\n", qps)
 }
 
 func genFeatureList(featureCount int) (rs []string) {
