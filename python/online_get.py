@@ -1,29 +1,47 @@
 #!/usr/bin/env python3
 import asyncio
 import time
+import sys
+import random
+import itertools
 from oomclient import Client
 import numpy as np
 
 
+# python3 online_get.py <config> <requests> <concurrency> <max_key> <feature_count>
 async def main():
-    client = await Client.with_embedded_oomagent()
-    features = [f"group_100.feature_{i}" for i in range(1, 101)]
-    n = 10000
+    cfg_path = sys.argv[1]
+    requests = int(sys.argv[2])
+    concurrency = int(sys.argv[3])
+    key_space = int(sys.argv[4])
+    feature_count = int(sys.argv[5])
+    client = await Client.with_embedded_oomagent(cfg_path=cfg_path)
+    features = [f"group_{feature_count}.feature_{i}" for i in range(1, feature_count + 1)]
+    await bench(client, requests, concurrency, key_space, features)
+
+
+async def bench(client, requests, concurrency, key_space, features):
+    tasks = [work(client, requests // concurrency, key_space, features) for _ in range(concurrency)]
+    durations = list(itertools.chain(*await asyncio.gather(*tasks)))
+
+    avg = np.average(durations)
+    print(f"QPS: {1000 / avg * concurrency :.2f}")
+    print(f"Avg: {avg}ms")
+    print(f"Min: {np.min(durations):.2f}ms")
+    print(f"Max: {np.max(durations):.2f}ms")
+    print(f"Med: {np.median(durations):.2f}ms")
+    print(f"P95: {np.percentile(durations, 95):.2f}ms")
+    print(f"P99: {np.percentile(durations, 99):.2f}ms")
+
+
+async def work(client, requests, key_space, features):
     durations = []
-    for i in range(n):
+    for _ in range(requests):
         t = time.time()
-        await client.online_get(str(i), features)
+        await client.online_get(str(random.randint(1, key_space)), features)
         durations.append((time.time() - t) * 1000)
-
-    total_time = sum(durations)
-    tpq = total_time / n
-    print("latency: " + str(tpq) + "ms")
-
-    arr = np.array(durations)
-    p95 = np.percentile(arr, 95)
-    p99 = np.percentile(arr, 99)
-    print("p99: " + str(p99) + "ms")
-    print("p95: " + str(p95) + "ms")
+    return durations
 
 
-asyncio.run(main())
+if __name__ == "__main__":
+    asyncio.run(main())
