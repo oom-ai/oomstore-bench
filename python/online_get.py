@@ -20,8 +20,8 @@ async def main():
     await bench(client, requests, concurrency, key_space, group)
 
 
-async def bench(client, requests, concurrency, key_space, features):
-    tasks = [work(client, requests // concurrency, key_space, features) for _ in range(concurrency)]
+async def bench(client, requests, concurrency, key_space, group):
+    tasks = [work(client, requests // concurrency, key_space, group) for _ in range(concurrency)]
     durations = list(itertools.chain(*await asyncio.gather(*tasks)))
 
     avg = np.average(durations)
