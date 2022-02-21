@@ -6,4 +6,8 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-oomclient = "0.1.0"
+oomclient = "0.1.1-rc.0"
+tokio = { version = "1.17", features = ["full"] }
+futures = "0.3"
+statrs = "0.15"
+rand = "0.8.5"
