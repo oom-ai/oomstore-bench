@@ -63,7 +63,7 @@ func main() {
 }
 
 func bench(ctx context.Context, store *oomstore.OomStore, requests, concurrency int, maxEntitykey int, featureCount int) {
-	features := genFeatureList(featureCount)
+	groupName := fmt.Sprintf("group_%d", featureCount)
 
 	var durations []float64
 	ch := make(chan time.Duration, concurrency*10)
@@ -86,8 +86,8 @@ func bench(ctx context.Context, store *oomstore.OomStore, requests, concurrency 
 				entityKey := strconv.Itoa(rand.Intn(maxEntitykey) + 1)
 				t := time.Now()
 				_, err := store.OnlineGet(ctx, types.OnlineGetOpt{
-					FeatureNames: features,
-					EntityKey:    entityKey,
+					GroupName: &groupName,
+					EntityKey: entityKey,
 				})
 				ch <- time.Since(t)
 				if err != nil {
