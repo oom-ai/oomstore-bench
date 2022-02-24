@@ -11,8 +11,11 @@ usage() { echo "Usage: $(basename "$0") <feature_count>" >&2; }
 feature_count=$1
 group_name="group_$feature_count"
 oomstore_cfg=$SDIR/oomstore_local.yaml
-REQUESTS=${REQUESTS:-20000}
-ROWS=${ROWS:-50000}
+
+export OOMCLI_CONFIG="$oomstore_cfg"
+export OOMAGENT_CONFIG="$oomstore_cfg"
+export REQUESTS=${REQUESTS:-20000}
+export ROWS=${ROWS:-50000}
 
 results_dir="$SDIR/results"
 
